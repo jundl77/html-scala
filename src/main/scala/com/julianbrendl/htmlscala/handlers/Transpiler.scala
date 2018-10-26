@@ -1,35 +1,47 @@
 package com.julianbrendl.htmlscala.handlers
 
-import java.util.Locale
+import com.julianbrendl.htmlscala.model.ReactComponent
 
+import scala.reflect.runtime.currentMirror
+import scala.tools.reflect.ToolBox
 import io.circe._
+import scalatags.Text.all._
+import scalatags.Text
 
 /**
-  * Creates an Invoice from a [[Json]] object
   */
-object InvoiceParser {
+object Transpiler {
+
+  private val toolbox = currentMirror.mkToolBox()
+  private val IMPORTS =
+    """import com.julianbrendl.htmlscala.model.ReactComponent;
+       import scalatags.Text.all._;
+       import scalatags.Text;"""
 
   /** Creates an Invoice from a [[Json]] object
     *
     * @param json [[Json]] object to parse into an Invoice
     * @return A new Invoice object
     */
-  def parseInvoice(json: Json): Int = {
+  def transpile(json: Json): String = {
 
     // Define variables
     val c: HCursor = json.hcursor
-    var locale: Locale = Locale.GERMAN
-    var company = ""
+    var code = ""
 
     // Extract all invoice components from the json
     try {
-      company = decodeString(c, "company")
+      code = decodeString(c, "code")
     } catch {
       // TODO: Handle error properly
       case e: IllegalArgumentException => println("exception caught: " + e);
     }
-    
-    1
+
+    val ast = this.toolbox.parse(IMPORTS + code)
+    val compiledCode = this.toolbox.compile(ast)
+    val reactComponent = compiledCode().asInstanceOf[ReactComponent]
+
+    reactComponent.renderAsString()
   }
 
   /** Decodes the value of a key as long as it's a string
@@ -42,19 +54,6 @@ object InvoiceParser {
   @throws(classOf[IllegalArgumentException])
   private def decodeString(c: HCursor, key: String): String = c.get[String](key) match {
     case Left(error) => throw new IllegalArgumentException("Error parsing " + key + " to String.")
-    case Right(json) => json
-  }
-
-  /** Decodes the value of a key as long as it's an integer
-    *
-    * @param c [[HCursor]] for a [[Json]] object
-    * @param key The key corresponding to the value to decode
-    * @throws java.lang.IllegalArgumentException Thrown if json is not correct
-    * @return The integer corresponding to the key
-    */
-  @throws(classOf[IllegalArgumentException])
-  private def decodeInt(c: HCursor, key: String): Int = c.get[Int](key) match {
-    case Left(error) => throw new IllegalArgumentException("Error parsing " + key + " to Int.")
     case Right(json) => json
   }
 }

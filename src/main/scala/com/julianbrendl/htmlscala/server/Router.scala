@@ -1,6 +1,6 @@
 package com.julianbrendl.htmlscala.server
 
-import com.julianbrendl.htmlscala.handlers.InvoiceParser
+import com.julianbrendl.htmlscala.handlers.Transpiler
 import io.circe._
 import io.circe.syntax._
 import org.http4s._
@@ -20,11 +20,11 @@ object Router {
         json <- req.as[Json]
         _ = println(json)
 
-        // Parse to invoice
-        invoice = InvoiceParser.parseInvoice(json)
+        // Transpile to HTML
+        htmlCode = Transpiler.transpile(json)
 
         // Send response
-        resp <- Ok(invoice.toString.asJson).putHeaders(Header("Access-Control-Allow-Origin", "*"))
+        resp <- Ok(htmlCode.asJson).putHeaders(Header("Access-Control-Allow-Origin", "*"))
       } yield resp
   }
 }
