@@ -1,4 +1,4 @@
-package de.hackundsoehne.invoicegen
+package com.julianbrendl.htmlscala
 
 import com.julianbrendl.htmlscala.model.ReactComponent
 import com.julianbrendl.htmlscala.server.Router

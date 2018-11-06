@@ -1,6 +1,6 @@
 # html-scala
 
-A simple and light-weight server that transpiles Scala code to HTML.
+A simple, light-weight server that transpiles Scala code to HTML.
 
 This project arose from the need to build React components using Scala.
 
