@@ -10,18 +10,18 @@ Scala code:
 
 ```scala
 new ReactComponent {
-  def messageOfTheDay() = "Hello World!"
-  
-  override def render(): Text.TypedTag[String] = {
-    div(
-      h1("Amazing Title"),
-      div(
-       p("Message of the day: " + messageOfTheDay()),
-       p("This is the first paragraph."),
-       p("This is the second paragraph.")
-      )
-    )
-  }
+    def messageOfTheDay() = "Hello World!"
+
+    override def render(): Text.TypedTag[String] = {
+        div(
+            h1("Amazing Title"),
+            div(
+                p("Message of the day: " + messageOfTheDay()),
+                p("This is the first paragraph."),
+                p("This is the second paragraph.")
+            )
+        )
+    }
 }
 ```
 
