@@ -13,12 +13,11 @@ object Router {
   /** Route used to handle invoices */
   val transpile = HttpService {
 
-    // Route to create an invoice
+    // Route to transpile
     case req @ POST -> Root / "transpile" =>
       for {
         // Decode json
         json <- req.as[Json]
-        _ = println(json)
 
         // Transpile to HTML
         htmlCode = Transpiler.transpile(json)

@@ -5,11 +5,8 @@ import com.julianbrendl.htmlscala.model.ReactComponent
 import scala.reflect.runtime.currentMirror
 import scala.tools.reflect.ToolBox
 import io.circe._
-import scalatags.Text.all._
-import scalatags.Text
 
-/**
-  */
+/** Transpiles a Scala [[ReactComponent]] into plain HTML.*/
 object Transpiler {
 
   private val toolbox = currentMirror.mkToolBox()
@@ -18,10 +15,10 @@ object Transpiler {
        import scalatags.Text.all._;
        import scalatags.Text;"""
 
-  /** Creates an Invoice from a [[Json]] object
+  /** Transpiles a Scala [[ReactComponent]] into plain HTML.
     *
-    * @param json [[Json]] object to parse into an Invoice
-    * @return A new Invoice object
+    * @param json [[Json]] object containing the code of a [[ReactComponent]]
+    * @return The plain HTML representation of the [[ReactComponent]]
     */
   def transpile(json: Json): String = {
 
@@ -34,7 +31,7 @@ object Transpiler {
       code = decodeString(c, "code")
     } catch {
       // TODO: Handle error properly
-      case e: IllegalArgumentException => println("exception caught: " + e);
+      case e: IllegalArgumentException => println("Exception caught: " + e);
     }
 
     val ast = this.toolbox.parse(IMPORTS + code)
