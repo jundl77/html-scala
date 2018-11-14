@@ -39,3 +39,23 @@ Resulting HTML:
   </div>
 </div>
 ```
+
+## Usage
+
+### transpile
+Make a POST request to ```/transpile``` with the following payload as JSON:
+
+```json
+{
+  code: "code to transpile"
+}
+```
+
+**Important:** The code has to be formatted as shown in the example above, using the ```ReactComponent```.
+
+### status check
+You can check the status of the service with a simple GET request to ```/status```. If everything is okay, 200 should be returned.
+
+## Docker 
+
+You can find this server as a docker image under [julianbrendl/scala-html](https://hub.docker.com/r/julianbrendl/html-scala/).
