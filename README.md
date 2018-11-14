@@ -1,5 +1,7 @@
 # html-scala
 
+[![Build Status](https://travis-ci.org/jundl77/html-scala.svg?branch=master)](https://travis-ci.org/jundl77/html-scala)
+
 A simple, light-weight server that transpiles Scala code to HTML.
 
 This project arose from the need to build React components using Scala.
