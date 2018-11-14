@@ -49,7 +49,7 @@ class RouterSpec extends org.specs2.mutable.Specification {
       .unsafeRun()
 
     // Execute test request
-    val task = Router.transpile.orNotFound(req)
+    val task = Router.httpService.orNotFound(req)
     task.unsafeRun()
   }
 
