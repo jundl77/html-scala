@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/jundl77/html-scala.svg?branch=master)](https://travis-ci.org/jundl77/html-scala)
 
-A simple, light-weight server that transpiles Scala code to HTML.
+A simple, light-weight server that transpiles Scala code to HTML. 
 
-This project arose from the need to build React components using Scala.
+This project arose from the need to build React components using Scala. Under the hood, html-scala uses [scalatags](https://github.com/lihaoyi/scalatags). Look at scalatags to see what Scala code you can write and how it is transformed to HTML.
 
 ### Example:
 
@@ -40,9 +40,9 @@ Resulting HTML:
 </div>
 ```
 
-## Usage
+## API
 
-### transpile
+### /transpile
 Make a POST request to ```/transpile``` with the following payload as JSON:
 
 ```json
@@ -51,9 +51,9 @@ Make a POST request to ```/transpile``` with the following payload as JSON:
 }
 ```
 
-**Important:** The code has to be formatted as shown in the example above, using the ```ReactComponent```.
+**Important:** The code has to be formatted as shown in the example above, using ```ReactComponent```.
 
-### status check
+### /status
 You can check the status of the service with a simple GET request to ```/status```. If everything is okay, 200 should be returned.
 
 ## Docker 
