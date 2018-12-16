@@ -24,7 +24,7 @@ object Router {
         status = StatusCheck.check()
 
         // Send response
-        resp <- Ok(status.asJson).putHeaders(Header("Access-Control-Allow-Origin", "*"))
+        resp <- Ok(status.asJson)
       } yield resp
 
     // Route to transpile
@@ -37,7 +37,7 @@ object Router {
         htmlCode = Transpiler.transpile(json)
 
         // Send response
-        resp <- Ok(htmlCode.asJson).putHeaders(Header("Access-Control-Allow-Origin", "*"))
+        resp <- Ok(htmlCode.asJson)
       } yield resp
   }
 }
