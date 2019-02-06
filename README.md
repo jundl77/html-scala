@@ -58,4 +58,4 @@ You can check the status of the service with a simple GET request to ```/status`
 
 ## Docker 
 
-You can find this server as a docker image under [julianbrendl/scala-html](https://hub.docker.com/r/julianbrendl/html-scala/).
+You can find this server as a docker image under [julianbrendl/html-scala](https://hub.docker.com/r/julianbrendl/html-scala/).
